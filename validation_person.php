@@ -77,23 +77,7 @@
         return "Добро пожаловать,".$temp['name'][$this->index]."Вы авторизовались!";
       }
 
-
-      //проверка логина на пустоту
-        public function emptyLogin()
-      {
-        if(empty($this->login)) exit('Логин не может быть пустым');
-      }
-      //проверка длины логина
-      public function lenLogin()
-      {
-        if (strlen($this->login)<6) exit('Минимум символов в логине должно быть 6 символов');
-      }
-      //проверка длины пароля
-        public function lenPassword()
-      {
-        if(strlen($this->password)<6) exit('Минимум символов в пароле должно быть 6 символов');
-      }
-      //проверка на наличии только букв и цифр
+     //проверка на наличии только букв и цифр
       public function alnumPassword()
       {
         if(!ctype_alnum($this->password)) exit('Пароль не состоит только из букв и цифр');
@@ -109,12 +93,7 @@
         if (!filter_var($this->email,FILTER_VALIDATE_EMAIL)) exit('Адрес указан неверно');
       }
 
-         public function validationLenName()
-      {
-        if (strlen($this->name)<>2) exit('Имя должно содержать два символа');
-      }
-
-            public function validationAlName()
+      public function validationAlName()
       {
         if (!ctype_alpha($this->name)) exit('Имя должно содержать только буквы');
       }
