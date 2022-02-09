@@ -6,12 +6,13 @@
 
 
 
-        public function __construct(string $name=NULL,string $login=NULL,string $password=NULL,string $email=NULL)
+        public function __construct(string $name=NULL,string $login=NULL,string $password=NULL,string $password2=NULL, string $email=NULL)
         {
 
           $this->name = $name;
           $this->login = $login;
           $this->password = $password;
+          $this->password2 = $password2;
           $this->email = $email;
         }
 
@@ -75,6 +76,34 @@
       {
         return "Добро пожаловать,".$temp['name'][$this->index]."Вы авторизовались!";
       }
-    }
+
+
+      //проверка логина на пустоту
+        public function emptyLogin()
+      {
+        if(empty($this->login)) exit('Логин не может быть пустым');
+      }
+      //проверка длины логина
+      public function lenLogin()
+      {
+        if (strlen($this->login)<6) exit('Минимум символов в логине должно быть 6 символов');
+      }
+      //проверка длины пароля
+        public function lenPassword()
+      {
+        if(strlen($this->password)<6) exit('Минимум символов в пароле должно быть 6 символов');
+      }
+      //проверка на наличии только букв и цифр
+      public function alnumPassword()
+      {
+        if(!ctype_alnum($this->password)) exit('Пароль не состоит только из букв и цифр');
+      }
+       //сравнение паролей
+      public function boolPasswordandConfirmPassword()
+      {
+        if($this->password != $this->password2) exit('Пароли не совпадают');
+      }
+
+}
 
 ?>
