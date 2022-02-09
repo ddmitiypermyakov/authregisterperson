@@ -19,7 +19,21 @@
 
   $login = trim($_POST['login']);
 
-};
+
+
+    include "validation_person.php";
+    //задаем конструктор
+    $value_user = new ValidationAuth($_POST['name'],$_POST['login'],$_POST['password'],$_POST['confirm_password'], $_POST['email']);
+    //Подключаем валидацию
+    $val_user->emptyLogin();
+    $val_user->lenLogin();
+    $val_user->lenPassword();
+    $val_user->alnumPassword();
+    $val_user->boolPasswordandConfirmPassword();
+    $val_user->validationEmail();
+    $val_user->validationLenName();
+    $val_user->validationAlName();
+
 
   $filename = "bd.json";
 
@@ -41,5 +55,6 @@
 
   fclose($fd);
     //очищаем сессию
+  };
   session_unset();
   ?>
