@@ -33,7 +33,7 @@
 
     include "validation_person.php";
     //задаем конструктор
-    $val_user = new ValidationAuth(NULL,$_POST['login'],$_POST['password'],NULL);
+    $val_user = new ValidationAuth(NULL,$_POST['login'],$_POST['password'],NULL, NULL);
     //получаем временный массив
     $a = $val_user->tempArray($arr);
     //проверяем логин и пароль

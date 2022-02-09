@@ -104,6 +104,22 @@
         if($this->password != $this->password2) exit('Пароли не совпадают');
       }
 
+      public function validationEmail()
+      {
+        if (!filter_var($this->email,FILTER_VALIDATE_EMAIL)) exit('Адрес указан неверно');
+      }
+
+         public function validationLenName()
+      {
+        if (strlen($this->name)<>2) exit('Имя должно содержать два символа');
+      }
+
+            public function validationAlName()
+      {
+        if (!ctype_alpha($this->name)) exit('Имя должно содержать только буквы');
+      }
+
+
 }
 
 ?>
