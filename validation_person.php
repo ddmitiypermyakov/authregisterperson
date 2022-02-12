@@ -31,7 +31,7 @@
               // зарегистрированных посетителей
               $temp['name'][$i]     = $data['name'];
               $temp['login'][$i] = $data['login'];
-              $temp['password'][$i]    = "md5.".md5($data['password']);
+              $temp['password'][$i]    = $data['password'];
               $temp['email'][$i]      = $data['email'];
               // счетчик
               $i++;
@@ -65,22 +65,36 @@
               }
         }
 
+             public function emailValidationExists($temp)
+
+        {
+
+            if(in_array($this->email,$temp['email']))
+              {
+
+
+                exit("Пользователь с такой почтой существует.");
+              }
+        }
+
+
 
         //проверяем на соответствие логина паролю в БД
         public function passwordValidation($temp)
 
         {
-          if (!empty($temp['login'])){
-          $this->index = array_search($this->login,$temp['login']);
+          if (!empty($temp['login']))
+          {
+              $this->index = array_search($this->login,$temp['login']);
 
-            if("md5.".md5($this->password) != $temp['password'][$this->index])
+                if("md5.".md5($this->password) != $temp['password'][$this->index])
               {
 
   ?>
 
-                <a href="">Назад</a>
+                  <a href="">Назад</a>
   <?php
-                exit("Пароль не тот, попробуй еще раз");
+                    exit("Пароль не тот, попробуй еще раз");
               }
             }
         }
