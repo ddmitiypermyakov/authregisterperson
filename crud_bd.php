@@ -27,7 +27,12 @@
             $json = json_encode($arr_new);
             fwrite($fd,$json."\r\n");
             fclose($fd);
+            ?>
+              <a href="index.php">Авторизация</a>
+            <?php
+
           }
+
 
     }
 ?>

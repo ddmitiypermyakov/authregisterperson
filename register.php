@@ -7,19 +7,15 @@
 <tr><td>e-mail:</td><td><input type=email name=email required></td></tr>
 
 <tr><td></td><td><input type=submit value='Зарегистрироваться'></td></tr>
+
 </form>
+
 </table>
 <?php
 
   session_start();
 
   if ($_POST) {
-  $_POST['password'] = trim($_POST['password']);
-  $_POST['confirm_password'] = trim($_POST['confirm_password']);
-
-  $login = trim($_POST['login']);
-
-
 
     include "validation_person.php";
     //задаем конструктор
@@ -38,7 +34,9 @@
     include "crud_bd.php";
 
 
-    $save_database=new WorkWithdatabaseJSON($_POST['name'],$_POST['login'],$_POST['password'], $_POST['email']);
+
+
+    $save_database=new WorkWithdatabaseJSON(trim($_POST['name']),trim($_POST['login']),trim($_POST['password']), trim($_POST['email']));
 
     $save_database->AddDatabaseJSON();
   };

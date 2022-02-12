@@ -9,11 +9,11 @@
       <form method=post>
       <tr>
         <td>Логин:</td>
-        <td><input type=text name=login></td>
+        <td><input type=text name=login required placeholder="Введите логин"></td>
       </tr>
       <tr>
         <td>Пароль:</td>
-        <td><input type=password name=password></td>
+        <td><input type=password name=password required placeholder="Введите пароль"></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -24,6 +24,7 @@
       </form>
    </table>
    <a href="register.php">Регистрация</a>
+
    <?php
 
   }
@@ -33,7 +34,7 @@
 
     include "validation_person.php";
     //задаем конструктор
-    $val_user = new ValidationAuth(NULL,$_POST['login'],$_POST['password'],NULL, NULL);
+    $val_user = new ValidationAuth(NULL,trim($_POST['login']),trim($_POST['password']),NULL, NULL);
     //получаем временный массив
     $a = $val_user->tempArray($arr);
     //проверяем логин и пароль

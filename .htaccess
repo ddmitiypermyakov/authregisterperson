@@ -15,7 +15,7 @@ RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
 #Перенаправляет все подобные попытки на страницу с ошибкой 403 - запрещено
 RewriteRule ^(.*)$ /403.html [F,L]
 
-
+#блокирует доступ к БД
 <files bd.json>
 order allow,deny
 deny from all
