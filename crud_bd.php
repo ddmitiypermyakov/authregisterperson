@@ -21,7 +21,7 @@
             $arr_new= [
                         "name" => $this->name,
                         "login" =>$this->login,
-                        "password" =>$this->password,
+                        "password" =>"md5.".md5($this->password),
                         "email" =>$this->email,
                       ];
             $json = json_encode($arr_new);
