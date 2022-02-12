@@ -34,6 +34,7 @@
 
     $a = $value_user->tempArray($arr);
     $value_user->personValidationExists($a);
+    $value_user->emailValidationExists($a);
     include "crud_bd.php";
 
 
