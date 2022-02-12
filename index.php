@@ -45,7 +45,7 @@
 
     ?>
 
-    <a href="auth.php">Выход</a>
+    <a href="">Выход</a>
 <?php
   }
 
