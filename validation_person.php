@@ -31,7 +31,7 @@
               // зарегистрированных посетителей
               $temp['name'][$i]     = $data['name'];
               $temp['login'][$i] = $data['login'];
-              $temp['password'][$i]    = $data['password'];
+              $temp['password'][$i]    = "md5.".md5($data['password']);
               $temp['email'][$i]      = $data['email'];
               // счетчик
               $i++;
@@ -47,34 +47,49 @@
               {
   ?>
                 <a href="register.php">Регистрация</a>
-                <a href="auth.php">Назад</a>
+                <a href="">Назад</a>
   <?php
                 exit("Пользователя не существует.");
               }
         }
 
+         public function personValidationExists($temp)
+
+        {
+
+            if(in_array($this->login,$temp['login']))
+              {
+
+
+                exit("Пользователь с таким именем существует.");
+              }
+        }
+
+
         //проверяем на соответствие логина паролю в БД
         public function passwordValidation($temp)
 
         {
+          if (!empty($temp['login'])){
           $this->index = array_search($this->login,$temp['login']);
 
-            if($this->password != $temp['password'][$this->index])
+            if("md5.".md5($this->password) != $temp['password'][$this->index])
               {
 
   ?>
 
-                <a href="auth.php">Назад</a>
+                <a href="">Назад</a>
   <?php
                 exit("Пароль не тот, попробуй еще раз");
               }
+            }
         }
 
         //Если пользователь авторизовался
         public function personAuth($temp)
 
       {
-        return "Добро пожаловать,".$temp['name'][$this->index]."Вы авторизовались!";
+        return "Добро пожаловать, ".$temp['name'][$this->index].". Вы авторизовались!";
       }
 
      //проверка на наличии только букв и цифр
@@ -95,7 +110,8 @@
 
       public function validationAlName()
       {
-        if (!ctype_alpha($this->name)) exit('Имя должно содержать только буквы');
+
+        if (!ctype_alpha($this->name))  exit('Имя должно содержать только буквы');
       }
 
 
