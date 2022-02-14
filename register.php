@@ -31,14 +31,13 @@
     $a = $value_user->tempArray($arr);
     $value_user->personValidationExists($a);
     $value_user->emailValidationExists($a);
+
     include "crud_bd.php";
-
-
-
 
     $save_database=new WorkWithdatabaseJSON(trim($_POST['name']),trim($_POST['login']),trim($_POST['password']), trim($_POST['email']));
 
     $save_database->AddDatabaseJSON();
+
   };
   //очищаем сессию
   //session_unset();
