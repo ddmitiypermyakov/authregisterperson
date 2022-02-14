@@ -103,6 +103,7 @@
         public function personAuth($temp)
 
       {
+        $_SESSION['login'] = $this->login; // сохраняем логин в сессию
         return "Добро пожаловать, ".$temp['name'][$this->index].". Вы авторизовались!";
       }
 

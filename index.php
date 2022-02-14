@@ -4,9 +4,10 @@
   session_start();
   if(empty($_POST))
   {
+
     ?>
     <table>
-      <form method=post>
+      <form method=post action = <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
       <tr>
         <td>Логин:</td>
         <td><input type=text name=login required placeholder="Введите логин"></td>
@@ -34,7 +35,7 @@
 
     include "validation_person.php";
     //задаем конструктор
-    $val_user = new ValidationAuth(NULL,trim($_POST['login']),trim($_POST['password']),NULL, NULL);
+    $val_user = new ValidationAuth(NULL,htmlspecialchars(trim($_POST['login'])),htmlspecialchars(trim($_POST['password'])),NULL, NULL);
     //получаем временный массив
     $a = $val_user->tempArray($arr);
     //проверяем логин и пароль
@@ -42,11 +43,9 @@
     $val_user->passwordValidation($a);
     //при успешной авторизации выдаем сообщение, Добро пожаловать ....
     echo $val_user->personAuth($a);
+       ?>
 
-
-    ?>
-
-    <a href="">Выход</a>
+    <a href="logout.php">Выход</a>
 <?php
   }
 
