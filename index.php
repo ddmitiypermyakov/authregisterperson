@@ -2,7 +2,12 @@
   // Имя файла данных
   $filename = "bd.json";
   session_start();
-  if(empty($_POST))
+  //var_dump($_SESSION['login']);
+  //setcookie("login", NULL, time() + 3600*24*7);
+
+  //_SESSION['login']=='NULL';
+
+  if(empty($_POST) && (empty($_SESSION['login'])) )
   {
 
     ?>
@@ -10,11 +15,11 @@
       <form method=post action = <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
       <tr>
         <td>Логин:</td>
-        <td><input type=text name=login required placeholder="Введите логин"></td>
+        <td><input type=text name=login required placeholder="Введите логин" required="required"></td>
       </tr>
       <tr>
         <td>Пароль:</td>
-        <td><input type=password name=password required placeholder="Введите пароль"></td>
+        <td><input type=password name=password required placeholder="Введите пароль" required="required"></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -31,11 +36,20 @@
   }
   else
   {
+
+      if (empty($_SESSION["login"]))
+       {
+      $_SESSION["login"] = $_POST["login"];
+      $_SESSION["password"] = $_POST["password"];
+      }
+
+
+
     $arr = file($filename);
 
     include "validation_person.php";
     //задаем конструктор
-    $val_user = new ValidationAuth(NULL,htmlspecialchars(trim($_POST['login'])),htmlspecialchars(trim($_POST['password'])),NULL, NULL);
+    $val_user = new ValidationAuth(NULL,htmlspecialchars(trim($_SESSION["login"])),htmlspecialchars(trim($_SESSION["login"])),NULL, NULL);
     //получаем временный массив
     $a = $val_user->tempArray($arr);
     //проверяем логин и пароль
