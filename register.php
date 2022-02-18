@@ -39,6 +39,5 @@
     $save_database->AddDatabaseJSON();
 
   };
-  //очищаем сессию
-  //session_unset();
+
   ?>

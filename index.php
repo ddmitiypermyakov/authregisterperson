@@ -11,8 +11,10 @@
   {
 
     ?>
+    <script src="ajax.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <table>
-      <form method=post action = <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
+      <form method=post id="ajax_form" action = <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
       <tr>
         <td>Логин:</td>
         <td><input type=text name=login required placeholder="Введите логин" required="required"></td>
@@ -29,6 +31,7 @@
 
       </form>
    </table>
+   <div id="result_form"></div>
    <a href="register.php">Регистрация</a>
 
    <?php
@@ -36,6 +39,9 @@
   }
   else
   {
+    ?>
+     <div id="result_form"></div>
+    <?php
 
       if (empty($_SESSION["login"]))
        {

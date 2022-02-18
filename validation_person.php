@@ -2,10 +2,6 @@
   class ValidationAuth
     {
 
-
-
-
-
         public function __construct(string $name=NULL,string $login=NULL,string $password=NULL,string $password2=NULL, string $email=NULL)
         {
 
@@ -14,6 +10,7 @@
           $this->password = $password;
           $this->password2 = $password2;
           $this->email = $email;
+          $this->error = array();
         }
 
         public function tempArray($arr)
@@ -52,6 +49,19 @@
                 exit("Пользователя не существует.");
               }
         }
+
+        public function personValidation1($temp)
+
+        {
+
+            if(!in_array($this->login,$temp['login']))
+              {
+                return $this->error['login']='LOGIN';
+              }
+        }
+
+
+
 
          public function personValidationExists($temp)
 
@@ -104,7 +114,8 @@
 
       {
         $_SESSION['login'] = $this->login; // сохраняем логин в сессию
-        return "Добро пожаловать, ".$temp['name'][$this->index].". Вы авторизовались!";
+        //return "Добро пожаловать, ".$temp['name'][$this->index].". Вы авторизовались!";
+        return $temp['name'][$this->index];
       }
 
      //проверка на наличии только букв и цифр
